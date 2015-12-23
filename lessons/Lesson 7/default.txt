@@ -1,0 +1,25 @@
+Slider Puzzle Lesson 7:
+The n-puzzle (Mathematical Patterns and Sequences)
+
+The n-puzzle is general name for a slider puzzle that consists of a grid of numbered squares with one square missing, and the numbers out of sequence. The 9-puzzle is a 3×3 numbered grid, the 16 puzzle is a 4×4 numbered grid. The goal of the n-puzzle is put the scrambled numbers back in sequence.
+
+
+The n-puzzle is a classical problem for modeling repeatable steps (or “algorithms”) involving mathematical patterns (or “heuristics.”) For example, you can begin by counting the number of misplaced tiles as you formulate a strategy for solving the puzzle. The n-puzzle also helps students to understand that some tile arrangements are unsolvable. 
+
+Skills:
+	Recognize patterns.
+	Practice classification and grouping.
+	Practice sequencing.
+	Put numbers in order.
+
+
+Activity:
+
+	Start the Slider Puzzle activity and choose the category labeled “Sequencing.” Sequencing is when you put things into a logical order.  
+	When the first image comes up, think how this image is set up differently from the one on the Slider Puzzle.  The Slider Puzzle creates a large image, where all the squares are pieces of the larger image, while the Sequencing image contains a number on each tile.  
+	Try to solve the 9-tile puzzle first. Try to put the numbers in order from smallest to largest.  Model for other students how to slide the keys and place them in order.
+	Once you are able to solve the 9-puzzle, share your strategies with the class. How is this different from the Slider Puzzles where you are assembling a picture? 
+	Now try to solve the 16-puzzle. How is this harder or easier?
+	After completing the 16-puzzle, walk around and help those who are having trouble.
+
+

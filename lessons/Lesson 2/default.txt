@@ -1,0 +1,11 @@
+Slider Puzzle Lesson 2: Puzzle-Solving Contest (Team work activity)
+
+	Working in teams of 2-3 people, try to solve a 9-tile Slider Puzzle in the fastest time. Each team must select the same image, and click on it at the same time (Count: “3, 2, 1, GO!”).  The timer indicates who finishes first.  
+
+	The winning team should share their strategies with the class. Each team member should say one thing about how they solved the puzzle quickly and worked together. 
+
+	Other students should describe their strategies too. Encourage everyone to name one way their puzzle solving skills have improved since the first time they played.
+
+	Repeat the contest with a 12 and 16 tile puzzle. Allow the winner of the preceding round to choose the puzzle image. Does the strategy change when there are more puzzle tiles to move? How?
+
+

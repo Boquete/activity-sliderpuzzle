@@ -1,0 +1,20 @@
+Slider Puzzle:Plan General de las Lecciones
+
+Un 'rompecabezas deslizante' (slider puzzle) es un clásico juego de lógica que invita al jugador a deslizar las piezas sobre un tablero para formar una imagen o patrón. No se pueden levantar las piezas del tablero; sólo se pueden deslizar hacia arriba, abajo, derecha o izquierda. Se debe utilizar la estrategia y la lógica para encontrar la secuencia de movimientos que permitan ordenar las piezas y resolver el rompecabezas.
+
+Este rompecabezas deslizante digital provee un marco entretenido para los jóvenes (y usuarios principiantes de la XO) para explorar las funcionalidades básicas de la XO, aprender de forma individual y grupal para resolver problemas, y desarrollar proyectos creativos que reflejan un entendimiento de la curricula que se está estudiando. 
+
+A lo largo del año escolar, la actividad del Rompecabezas Deslizante puede ser integrada en diferentes áreas temáticas (ej.: geografía, matemáticas, composición). Los alumnos pueden crear imágenes para el rompecabezas que se relacionan con sus estudios en el aula, y compartirlas con sus compañeros. En el proceso también aprenderá como utilizar e integrar el producto de la actividad de Pintar, la cámara, la red en malla, y otras herramientas.
+
+Habilidades:
+	Practicar el uso de la lógica y pensamiento estratégico para resolver un problema.
+	Practicar la comparación visual y habilidades para resolver problemas.
+	Practicar la discusión sobre el proceso de pensamiento para la resolución de problemas.
+	Aprender a explicar ideas, procesos de pensamiento y estrategias a los compañeros.
+	Aprender de los compañeros.
+	Aprender el uso de actividades específicas en la laptop.
+	Aprender a usar la Actividad de Pintar con un juego.
+	Aprender a trabajar en grupo sobre un proyecto.
+	Aprender a expresar ideas bajo estudio por medio de un proyecto original. 
+
+

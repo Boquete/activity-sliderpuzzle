@@ -37,7 +37,8 @@ if os.path.exists(os.path.join(cwd, 'mamamedia_icons')):
     mmmpath = cwd
     iconpath = os.path.join(mmmpath, 'mamamedia_icons')
 else:
-    propfile = os.path.expanduser("~/.sugar/default/org.worldwideworkshop.olpc.MMMPath")
+    propfile = os.path.expanduser(
+        "~/.sugar/default/org.worldwideworkshop.olpc.MMMPath")
 
     if os.path.exists(propfile):
         mmmpath = file(propfile, 'rb').read()
@@ -52,14 +53,18 @@ THUMB_SIZE = 48
 IMAGE_SIZE = 200
 #MYOWNPIC_FOLDER = os.path.expanduser("~/.sugar/default/org.worldwideworkshop.olpc.MyOwnPictures")
 
-def prepare_btn (btn):
+
+def prepare_btn(btn):
     return btn
 
-def register_category (pixbuf_class, path):
+
+def register_category(pixbuf_class, path):
     pass
 
+
 class CategoryDirectory (object):
-    def __init__ (self, path, width=-1, height=-1, method=RESIZE_CUT):
+
+    def __init__(self, path, width=-1, height=-1, method=RESIZE_CUT):
         self.path = path
         self.method = method
         self.pb = None
@@ -72,7 +77,7 @@ class CategoryDirectory (object):
         self.filename = None
         self.name = os.path.basename(path)
 
-    def gather_images (self):
+    def gather_images(self):
         """ Lists all images in the selected path as per the wildcard expansion of 'image_*'.
         Adds all linked images from files (*.lnk) """
         self.images = []
@@ -86,26 +91,30 @@ class CategoryDirectory (object):
         self.images.extend(glob(os.path.join(self.path, "image_*")))
         self.images.sort()
 
-    def set_image_size (self, w, h):
+    def set_image_size(self, w, h):
         self.width = w
         self.height = h
 
-    def set_thumb_size (self, w, h):
+    def set_thumb_size(self, w, h):
         self.twidth = w
         self.theight = h
         self.thumb = self._get_category_thumb()
 
-    def get_image (self, name):
+    def get_image(self, name):
         if not len(self.images) or name is None or name not in self.images:
             return None
         self.pb = load_image(name)
         if self.pb is not None:
-            rv = resize_image(self.pb, self.width, self.height, method=self.method)
+            rv = resize_image(
+                self.pb,
+                self.width,
+                self.height,
+                method=self.method)
             self.filename = name
             return rv
         return None
-            
-    def get_next_image (self):
+
+    def get_next_image(self):
         if not len(self.images):
             return None
         if self.filename is None or self.filename not in self.images:
@@ -117,7 +126,7 @@ class CategoryDirectory (object):
             pos = 0
         return self.get_image(self.images[pos])
 
-    def get_previous_image (self):
+    def get_previous_image(self):
         if not len(self.images):
             return None
         if self.filename is None or self.filename not in self.images:
@@ -129,21 +138,26 @@ class CategoryDirectory (object):
             pos = len(self.images) - 1
         return self.get_image(self.images[pos])
 
-    def has_images (self):
+    def has_images(self):
         logging.debug("IMG %s" % self.images)
         return len(self.images) > 0
 
-    def count_images (self):
+    def count_images(self):
         return len(self.images)
 
-    def has_image (self):
+    def has_image(self):
         return self.pb is not None
 
-    def _get_category_thumb (self):
+    def _get_category_thumb(self):
         if os.path.isdir(self.path):
             thumbs = glob(os.path.join(self.path, "thumb.*"))
             thumbs.extend(glob(os.path.join(self.path, "default_thumb.*")))
-            thumbs.extend(glob(os.path.join(mmmpath, "mmm_images","default_thumb.*")))
+            thumbs.extend(
+                glob(
+                    os.path.join(
+                        mmmpath,
+                        "mmm_images",
+                        "default_thumb.*")))
             logging.debug(thumbs)
             thumbs = filter(lambda x: os.path.exists(x), thumbs)
             thumbs.append(None)
@@ -151,56 +165,80 @@ class CategoryDirectory (object):
             thumbs = [self.path]
         logging.debug("%s %s" % (self.path, thumbs))
         return load_image(thumbs[0], self.twidth, self.theight)
-    
+
 
 class ImageSelectorWidget (Gtk.Table):
-    __gsignals__ = {'category_press' : (GObject.SIGNAL_RUN_LAST, GObject.TYPE_NONE, ()),
-                    'image_press' : (GObject.SIGNAL_RUN_LAST, GObject.TYPE_NONE, ()),}
+    __gsignals__ = {
+        'category_press': (
+            GObject.SIGNAL_RUN_LAST,
+            GObject.TYPE_NONE,
+            ()),
+        'image_press': (
+            GObject.SIGNAL_RUN_LAST,
+            GObject.TYPE_NONE,
+            ()),
+    }
 
-    def __init__ (self,parentp,
-                  width=IMAGE_SIZE,
-                  height=IMAGE_SIZE,
-                  frame_color=None,
-                  prepare_btn_cb=prepare_btn,
-                  method=RESIZE_CUT,
-                  image_dir=None):
-        Gtk.Table.__init__(self, 2,5,False)
+    def __init__(self, parentp,
+                 width=IMAGE_SIZE,
+                 height=IMAGE_SIZE,
+                 frame_color=None,
+                 prepare_btn_cb=prepare_btn,
+                 method=RESIZE_CUT,
+                 image_dir=None):
+        Gtk.Table.__init__(self, 2, 5, False)
         self._signals = []
         self.parentp = parentp
         self.width = width
         self.height = height
         self.image = Gtk.Image()
         self.method = method
-        #self.set_myownpath(MYOWNPIC_FOLDER)
+        # self.set_myownpath(MYOWNPIC_FOLDER)
         img_box = BorderFrame(border_color=frame_color)
         img_box.add(self.image)
         img_box.set_border_width(5)
-        self._signals.append((img_box, img_box.connect('button_press_event', self.emit_image_pressed)))
-        self.attach(img_box, 0,5,0,1,0,0)
-        self.attach(Gtk.Label(), 0,1,1,2)
+        self._signals.append(
+            (img_box,
+             img_box.connect(
+                 'button_press_event',
+                 self.emit_image_pressed)))
+        self.attach(img_box, 0, 5, 0, 1, 0, 0)
+        self.attach(Gtk.Label(), 0, 1, 1, 2)
         self.bl = Gtk.Button()
 
         il = Gtk.Image()
-        il.set_from_pixbuf(load_image(os.path.join(iconpath, 'arrow_left.png')))
+        il.set_from_pixbuf(
+            load_image(
+                os.path.join(
+                    iconpath,
+                    'arrow_left.png')))
         self.bl.set_image(il)
 
         self.bl.connect('clicked', self.previous)
-        self.attach(prepare_btn_cb(self.bl), 1,2,1,2,0,0)
+        self.attach(prepare_btn_cb(self.bl), 1, 2, 1, 2, 0, 0)
 
         cteb = Gtk.EventBox()
         self.cat_thumb = Gtk.Image()
         self.cat_thumb.set_size_request(THUMB_SIZE, THUMB_SIZE)
         cteb.add(self.cat_thumb)
-        self._signals.append((cteb, cteb.connect('button_press_event', self.emit_cat_pressed)))
-        self.attach(cteb, 2,3,1,2,0,0,xpadding=10)
-        
+        self._signals.append(
+            (cteb,
+             cteb.connect(
+                 'button_press_event',
+                 self.emit_cat_pressed)))
+        self.attach(cteb, 2, 3, 1, 2, 0, 0, xpadding=10)
+
         self.br = Gtk.Button()
         ir = Gtk.Image()
-        ir.set_from_pixbuf(load_image(os.path.join(iconpath,'arrow_right.png')))
+        ir.set_from_pixbuf(
+            load_image(
+                os.path.join(
+                    iconpath,
+                    'arrow_right.png')))
         self.br.set_image(ir)
         self.br.connect('clicked', self.next)
-        self.attach(prepare_btn_cb(self.br), 3,4,1,2,0,0)
-        self.attach(Gtk.Label(),4,5,1,2)
+        self.attach(prepare_btn_cb(self.br), 3, 4, 1, 2, 0, 0)
+        self.attach(Gtk.Label(), 4, 5, 1, 2)
         self.filename = None
         self.show_all()
         self.image.set_size_request(width, height)
@@ -208,13 +246,13 @@ class ImageSelectorWidget (Gtk.Table):
             image_dir = os.path.join(mmmpath, "mmm_images")
         self.set_image_dir(image_dir)
 
-    def add_image (self, *args):#widget=None, response=None, *args):
+    def add_image(self, *args):  # widget=None, response=None, *args):
         """ Use to trigger and process the My Own Image selector. """
 
         if hasattr(mime, 'GENERIC_TYPE_IMAGE'):
-            filter = { 'what_filter': mime.GENERIC_TYPE_IMAGE }
+            filter = {'what_filter': mime.GENERIC_TYPE_IMAGE}
         else:
-            filter = { }
+            filter = {}
 
         chooser = ObjectChooser(self.parentp, **filter)
         try:
@@ -225,8 +263,12 @@ class ImageSelectorWidget (Gtk.Table):
                     if self.load_image(str(jobject.file_path), True):
                         pass
                     else:
-                        err = Gtk.MessageDialog(self._parent, Gtk.DialogFlags.MODAL, Gtk.MESSAGE_ERROR, Gtk.BUTTONS_OK,
-                                                _("Not a valid image file"))
+                        err = Gtk.MessageDialog(
+                            self._parent,
+                            Gtk.DialogFlags.MODAL,
+                            Gtk.MESSAGE_ERROR,
+                            Gtk.BUTTONS_OK,
+                            _("Not a valid image file"))
                         err.run()
                         err.destroy()
                         return
@@ -234,9 +276,8 @@ class ImageSelectorWidget (Gtk.Table):
             chooser.destroy()
             del chooser
 
-
         #print (widget,response,args)
-        #if response is None:
+        # if response is None:
         #    # My Own Image selector
         #    imgfilter = gtk.FileFilter()
         #    imgfilter.set_name(_("Image Files"))
@@ -251,7 +292,7 @@ class ImageSelectorWidget (Gtk.Table):
         #    fd.connect("response", self.add_image)
         #    fd.resize(800,600)
         #    fd.show()
-        #else:
+        # else:
         #    if response == gtk.RESPONSE_ACCEPT:
         #        if self.load_image(widget.get_filename()):
         #            pass
@@ -264,14 +305,14 @@ class ImageSelectorWidget (Gtk.Table):
         #            return
         #    widget.destroy()
 
-    def set_readonly (self, ro=True):
+    def set_readonly(self, ro=True):
         if ro:
             self.bl.hide()
             self.br.hide()
             for w, s in self._signals:
                 w.handler_block(s)
 
-    #def set_myownpath (self, path):
+    # def set_myownpath (self, path):
     #    """ Sets the path to My Own Pictures storage, so we know where to add links to new pictures """
     #    if path is None:
     #        self.myownpath = None
@@ -280,11 +321,11 @@ class ImageSelectorWidget (Gtk.Table):
     #            os.mkdir(path)
     #        self.myownpath = path
 
-    #def is_myownpath (self):
+    # def is_myownpath (self):
     #    """ Checks current path against the set custom image path """
     #    return self.myownpath == self.category.path
     #
-    #def gather_myownpath_images(self):
+    # def gather_myownpath_images(self):
     #    """ """
     #    rv = []
     #    self.images = []
@@ -304,40 +345,40 @@ class ImageSelectorWidget (Gtk.Table):
     #        rv.append((fpath, fpath, digest))
     #    return rv
 
-    def emit_cat_pressed (self, *args):
+    def emit_cat_pressed(self, *args):
         self.emit('category_press')
         return True
 
-    def emit_image_pressed (self, *args):
+    def emit_image_pressed(self, *args):
         self.emit('image_press')
         return True
 
-    def has_image (self):
+    def has_image(self):
         return self.category.has_image()
 
-    def get_category_name (self):
+    def get_category_name(self):
         return self.category.name
 
-    def get_filename (self):
+    def get_filename(self):
         return self.category.filename
 
-    def get_image (self):
+    def get_image(self):
         return self.category.pb
 
-    def next (self, *args, **kwargs):
+    def next(self, *args, **kwargs):
         pb = self.category.get_next_image()
         if pb is not None:
             self.image.set_from_pixbuf(pb)
 
-    def previous (self, *args, **kwargs):
+    def previous(self, *args, **kwargs):
         pb = self.category.get_previous_image()
         if pb is not None:
             self.image.set_from_pixbuf(pb)
 
-    def get_image_dir (self):
+    def get_image_dir(self):
         return self.category.path
 
-    def set_image_dir (self, directory):
+    def set_image_dir(self, directory):
         if os.path.exists(directory) and not os.path.isdir(directory):
             filename = directory
             directory = os.path.dirname(directory)
@@ -345,7 +386,8 @@ class ImageSelectorWidget (Gtk.Table):
         else:
             logging.debug("dir=%s" % (directory))
             filename = None
-        self.category = CategoryDirectory(directory, self.width, self.height, self.method)
+        self.category = CategoryDirectory(
+            directory, self.width, self.height, self.method)
         self.cat_thumb.set_from_pixbuf(self.category.thumb)
         if filename:
             self.image.set_from_pixbuf(self.category.get_image(filename))
@@ -355,7 +397,7 @@ class ImageSelectorWidget (Gtk.Table):
 
     def load_image(self, filename, fromJournal=False):
         """ Loads an image from the file """
-        #if self.myownpath is not None and os.path.isdir(self.myownpath) and not fromJournal:
+        # if self.myownpath is not None and os.path.isdir(self.myownpath) and not fromJournal:
         #    name = os.path.splitext(os.path.basename(filename))[0]
         #    while os.path.exists(os.path.join(self.myownpath, '%s.lnk' % name)):
         #        name = name + '_'
@@ -366,35 +408,55 @@ class ImageSelectorWidget (Gtk.Table):
         #    f.close()
         #    self.category = CategoryDirectory(self.myownpath, self.width, self.height, method=self.method)
         #    self.image.set_from_pixbuf(self.category.get_image(filename))
-        #else:
-        self.category = CategoryDirectory(filename, self.width, self.height, method=self.method)
+        # else:
+        self.category = CategoryDirectory(
+            filename, self.width, self.height, method=self.method)
         self.next()
         self.cat_thumb.set_from_pixbuf(self.category.thumb)
         return self.image.get_pixbuf() is not None
 
-    def load_pb (self, pb):
+    def load_pb(self, pb):
         self.category.pb = pb
-        self.image.set_from_pixbuf(resize_image(pb, self.width, self.height, method=self.method))
+        self.image.set_from_pixbuf(
+            resize_image(
+                pb,
+                self.width,
+                self.height,
+                method=self.method))
 
-    #def set_game_widget(self, game_widget):
+    # def set_game_widget(self, game_widget):
     #    if self.has_image():
     #        game_widget.load_image(self.get_filename())
 
-    def _freeze (self):
+    def _freeze(self):
         """ returns a json writable object representation capable of being used to restore our current status """
         return {'image_dir': self.get_image_dir(),
                 'filename': self.get_filename()}
 
-    def _thaw (self, obj):
+    def _thaw(self, obj):
         """ retrieves a frozen status from a python object, as per _freeze """
         self.set_image_dir(obj.get('image_dir', None))
-        self.image.set_from_pixbuf(self.category.get_image(obj.get('filename', None)))
+        self.image.set_from_pixbuf(
+            self.category.get_image(
+                obj.get(
+                    'filename', None)))
+
 
 class CategorySelector (Gtk.ScrolledWindow):
-    __gsignals__ = {'selected' : (GObject.SIGNAL_RUN_LAST, GObject.TYPE_NONE, (str,))}
-    
-    def __init__ (self, title=None, selected_category_path=None, path=None, extra=()):
-        Gtk.ScrolledWindow.__init__ (self)
+    __gsignals__ = {
+        'selected': (
+            GObject.SIGNAL_RUN_LAST,
+            GObject.TYPE_NONE,
+            (str,
+             ))}
+
+    def __init__(
+            self,
+            title=None,
+            selected_category_path=None,
+            path=None,
+            extra=()):
+        Gtk.ScrolledWindow.__init__(self)
         self.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         if path is None:
             path = os.path.join(mmmpath, 'mmm_images')
@@ -402,7 +464,7 @@ class CategorySelector (Gtk.ScrolledWindow):
         self.thumbs = {}
         model, selected = self.get_model(path, selected_category_path, extra)
         self.ignore_first = selected is not None
-        
+
         self.treeview = Gtk.TreeView()
         col = Gtk.TreeViewColumn(title)
         r1 = Gtk.CellRendererPixbuf()
@@ -420,33 +482,36 @@ class CategorySelector (Gtk.ScrolledWindow):
             self.treeview.get_selection().select_path(selected)
         self.treeview.connect("cursor-changed", self.do_select)
 
-    def grab_focus (self):
+    def grab_focus(self):
         self.treeview.grab_focus()
 
-    def cell_pb (self, tvcolumn, cell, model, it, w):
+    def cell_pb(self, tvcolumn, cell, model, it, w):
         # Renders a pixbuf stored in the thumbs cache
         cell.set_property('pixbuf', self.thumbs[it.stamp])
 
-    def get_pb (self, path):
+    def get_pb(self, path):
         thumbs = glob(os.path.join(path, "thumb.*"))
         thumbs.extend(glob(os.path.join(self.path, "default_thumb.*")))
         thumbs = filter(lambda x: os.path.exists(x), thumbs)
         thumbs.append(None)
         return load_image(thumbs[0], THUMB_SIZE, THUMB_SIZE)
 
-    def get_model (self, path, selected_path, extra):
+    def get_model(self, path, selected_path, extra):
         # Each row is (path/dirname, pretty name, 0 based index)
         selected = None
         store = Gtk.ListStore(str, str, int)
         store.set_sort_column_id(1, Gtk.SortType.ASCENDING)
-        files = [os.path.join(path, x) for x in os.listdir(path) if not x.startswith('.')]
+        files = [os.path.join(path, x)
+                 for x in os.listdir(path) if not x.startswith('.')]
         files.extend(extra)
-        for fullpath, prettyname in [(x, _(os.path.basename(x))) for x in files if os.path.isdir(x)]:
+        for fullpath, prettyname in [(x, _(os.path.basename(x)))
+                                     for x in files if os.path.isdir(x)]:
             count = CategoryDirectory(fullpath).count_images()
             logging.debug("%s %s %s" % (fullpath, prettyname, count))
-            tree_iter = store.append([fullpath, prettyname + (" (%i)" % count), len(self.thumbs)])
+            tree_iter = store.append(
+                [fullpath, prettyname + (" (%i)" % count), len(self.thumbs)])
             self.thumbs[tree_iter.stamp] = self.get_pb(fullpath)
-        #if os.path.isdir(MYOWNPIC_FOLDER):
+        # if os.path.isdir(MYOWNPIC_FOLDER):
         #    count = CategoryDirectory(MYOWNPIC_FOLDER).count_images()
         #    store.append([MYOWNPIC_FOLDER, _("My Pictures") + (" (%i)" % count), len(self.thumbs)])
         #    self.thumbs.append(self.get_pb(MYOWNPIC_FOLDER))
@@ -459,10 +524,9 @@ class CategorySelector (Gtk.ScrolledWindow):
             i = store.iter_next(i)
         return store, selected
 
-    def do_select (self, tree, *args, **kwargs):
+    def do_select(self, tree, *args, **kwargs):
         if self.ignore_first:
             self.ignore_first = False
         else:
             tv, it = tree.get_selection().get_selected()
-            self.emit("selected", tv.get_value(it,0))
-
+            self.emit("selected", tv.get_value(it, 0))

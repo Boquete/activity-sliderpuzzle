@@ -1,0 +1,14 @@
+Slider Puzzle, Lição 1: Pensamento estratégico com Quebra-Cabeças Deslizante
+
+	A partir da tela inicial do XO, clique no ícone Slider Puzzle.
+	Clique e explore as imagens dos quebra-cabeças mostrados à direita, e clique para escolher uma imagem a resolver.
+	Explore como funciona o quebra-cabeças. Clique numa peça para deslizá-la para um espaço vazio. Note que se pode mover as peças para cima, para baixo, para a direita e para a esquerda, mas não se pode levantá-las do tabuleiro.
+	Mude a quantidade de quadrados de 9 para 12 e para 16. Observe como o jogo se torna mais desafiador quando se escolhe um número maior de quadrados.
+	Clique em «Embaralhar» para misturar as peças. Clique em «Solução» para ver a imagem em seu estado completo, resolvido.
+	Trabalhe em pares ou independentemente para resolver um quebra-cabecas de 9 peças. Se for resolvido rapidamente, tente resolver um com 12 ou 16 peças. Dê uma volta e ajude outros colegas que ainda estão resolvendo seus quebra-cabeças.
+	Depois de ter jogado com o quebra-cabeças por um tempo, escreva algumas de suas questões ou estratégias usadas para resolver o problema.
+	Discuta em grupo as estratégias e questões de cada um. Identifique quais estratégias funcionaram e quais não. Discuta as coisas que foram consideradas difíceis ou frustrantes.
+	Crie gráficos a partir das experiências comuns, das diferenças e das semelhanças. Um aluno pode registrar todas as idéias em seu XO. 
+
+
+

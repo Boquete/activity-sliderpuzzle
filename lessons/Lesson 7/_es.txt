@@ -1,0 +1,21 @@
+Rompecabezas Deslizante Lección Nº7:
+El rompecabezas-n (Patrones y Series Matemáticas)
+
+El rompecabezas-n es un nombre genérico para un rompecabezas deslizante que consiste en una grilla con números y una pieza faltante, estando los números desordeandos. Un rompecabezas-9 es una grilla de 3x3, el rompecabezas-16 es una grilla numerada de 4x4. El objetivo es ordenar los números.
+
+El rompecabezas-n es un clásico problema para modelar pasos repetibles (o «algorítmos») que involucran patrones matemáticos (o «heurísticas»). Por ejemplo, se puede comenzar contandon la cantidad de piezas o números fuera de lugar al mismo tiempo que se formula la estrategia para resovler el rompecabezas. El rompecabezas-n también ayuda a los alumnos entender que algunas disposiciones no tienen solución.
+
+Habilidades:
+	Reconocimiento de patrones
+	Practicar la clasificación y agrupamiento.
+	Practicar series.
+	Ordenar números. 
+
+Actividad:
+	Inicie el Rompecabezas Deslizable y elija la categoría llamada «Secuencias». El secuencionamiento es cuando se ponen las cosas en un órden lógico.
+	Cuando aparezca la primera imagen, vea como esta imagen difiere del Rompecabezas Deslizable. El Rompecabezas Deslizable crea una gran imagen, donde cada pieza es una parte de la imagen completa, mientras que en Secuencias la imagen sólo contiene un número en cada pieza.
+	Intente resolver el rompecabezas-9 primero. Intente ordenar los números de menor a mayor. Muestre a los chicos como deslizar las piezas y ponerlas en orden.
+	Una vez resuelto el rompecabezas-9, comparta sus estrategias con la clase. ¿Cómo difiere del Rompecabezas Deslizable cuando se estaba armando la imagen?
+	Ahora intente resolver el rompecabezas-16. ¿En qué es más fácil o difícil?
+	Tras completar el rompecabezas-16, pasee y ayude a los que todavía encuentran dificultades. 
+
